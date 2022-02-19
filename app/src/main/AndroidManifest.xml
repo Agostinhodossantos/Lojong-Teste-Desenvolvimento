@@ -11,8 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:name="io.lojong.com.AppClass"
-        android:theme="@style/Theme.DemoTMDB">
-        <activity android:name=".ui.details.DetailsActivity"></activity>
+        android:theme="@style/Theme.SplashScreen">
+
         <activity android:name="io.lojong.com.ui.view.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

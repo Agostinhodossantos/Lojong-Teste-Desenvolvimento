@@ -1,35 +1,503 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/vParent"
+    android:id="@+id/vScroll"
+    android:theme="@style/Theme.Lojong"
+    android:background="@drawable/ic_grass"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.listing.ListingActivity">
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <View
+            android:id="@+id/c1"
+            android:layout_width="54dp"
+            android:layout_height="74dp"
+            android:layout_marginEnd="100dp"
+            android:background="@drawable/ic_path_vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <View
+            android:id="@+id/buttonNumberOne"
+            android:layout_width="54dp"
+            android:layout_height="74dp"
+            android:background="@drawable/ic_step_horizontal"
+            app:layout_constraintBottom_toTopOf="@id/c1"
+            app:layout_constraintEnd_toEndOf="@id/c1"
+            app:layout_constraintStart_toStartOf="@id/c1" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/buttonNumberOneText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/num_1"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@id/buttonNumberOne"
+            app:layout_constraintEnd_toEndOf="@id/buttonNumberOne"
+            app:layout_constraintStart_toStartOf="@id/buttonNumberOne"
+            app:layout_constraintTop_toTopOf="@+id/buttonNumberOne" />
+
+        <View
+            android:id="@+id/c3"
+            android:layout_width="54dp"
+            android:layout_height="74dp"
+            android:background="@drawable/ic_second_c"
+            app:layout_constraintBottom_toTopOf="@+id/buttonNumberOne"
+            app:layout_constraintEnd_toEndOf="@id/buttonNumberOne"
+            app:layout_constraintStart_toStartOf="@id/buttonNumberOne" />
+
+        <View
+            android:id="@+id/c4"
+            android:layout_width="100dp"
+            android:layout_height="74dp"
+            android:background="@drawable/ic_path_horizontal"
+            app:layout_constraintBottom_toBottomOf="@id/c3"
+            app:layout_constraintEnd_toStartOf="@id/c3"
+            app:layout_constraintTop_toTopOf="@id/c3" />
+
+        <View
+            android:id="@+id/c5"
+            android:layout_width="54dp"
+            android:layout_height="74dp"
+            android:background="@drawable/ic_fourth_c"
+            app:layout_constraintBottom_toBottomOf="@id/c4"
+            app:layout_constraintEnd_toStartOf="@id/c4"
+            app:layout_constraintTop_toTopOf="@id/c4" />
+
+        <View
+            android:id="@+id/buttonNumberTwo"
+            android:layout_width="54dp"
+            android:layout_height="74dp"
+            android:background="@drawable/ic_step_horizontal"
+            app:layout_constraintBottom_toTopOf="@id/c5"
+            app:layout_constraintEnd_toEndOf="@id/c5"
+            app:layout_constraintStart_toStartOf="@id/c5" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/buttonNumberTwoText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/num_2"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@id/buttonNumberTwo"
+            app:layout_constraintEnd_toEndOf="@id/buttonNumberTwo"
+            app:layout_constraintStart_toStartOf="@id/buttonNumberTwo"
+            app:layout_constraintTop_toTopOf="@+id/buttonNumberTwo" />
+
+        <View
+            android:id="@+id/c6"
+            android:layout_width="54dp"
+            android:layout_height="74dp"
+            android:background="@drawable/ic_first_c"
+            app:layout_constraintBottom_toTopOf="@id/buttonNumberTwo"
+            app:layout_constraintEnd_toEndOf="@id/buttonNumberTwo"
+            app:layout_constraintStart_toStartOf="@id/buttonNumberTwo" />
+
+        <View
+            android:id="@+id/c7"
+            android:layout_width="188dp"
+            android:layout_height="74dp"
+            android:background="@drawable/ic_path_horizontal"
+            app:layout_constraintBottom_toBottomOf="@id/c6"
+            app:layout_constraintStart_toEndOf="@id/c6"
+            app:layout_constraintTop_toTopOf="@id/c6" />
+
+        <View
+            android:id="@+id/c8"
+            android:layout_width="54dp"
+            android:layout_height="74dp"
+            android:background="@drawable/ic_third_c"
+            app:layout_constraintStart_toEndOf="@id/c7"
+            app:layout_constraintTop_toTopOf="@id/c7" />
+
+        <View
+            android:id="@+id/c9"
+            android:layout_width="54dp"
+            android:layout_height="72dp"
+            android:background="@drawable/ic_path_vertical"
+            app:layout_constraintBottom_toTopOf="@id/c8"
+            app:layout_constraintEnd_toEndOf="@id/c8"
+            app:layout_constraintStart_toStartOf="@id/c8" />
+
+        <View
+            android:id="@+id/c10"
+            android:layout_width="54dp"
+            android:layout_height="74dp"
+            android:background="@drawable/ic_second_c"
+            app:layout_constraintBottom_toTopOf="@id/c9"
+            app:layout_constraintEnd_toEndOf="@id/c9"
+            app:layout_constraintStart_toStartOf="@id/c9" />
 
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvMovies"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <View
+            android:id="@+id/c11"
+            android:layout_width="150dp"
+            android:layout_height="74dp"
+            android:background="@drawable/ic_path_horizontal"
+            app:layout_constraintBottom_toBottomOf="@id/c10"
+            app:layout_constraintEnd_toStartOf="@id/c10"
+            app:layout_constraintTop_toTopOf="@id/c10" />
+
+        <View
+            android:id="@+id/buttonNumberThree"
+            android:layout_width="54dp"
+            android:layout_height="74dp"
+            android:background="@drawable/ic_step_vertical"
+            app:layout_constraintBottom_toBottomOf="@id/c11"
+            app:layout_constraintEnd_toStartOf="@id/c11" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/buttonNumberThreeText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/num_3"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@id/buttonNumberThree"
+            app:layout_constraintEnd_toEndOf="@id/buttonNumberThree"
+            app:layout_constraintStart_toStartOf="@id/buttonNumberThree"
+            app:layout_constraintTop_toTopOf="@+id/buttonNumberThree" />
+
+        <View
+            android:id="@+id/c12"
+            android:layout_width="54dp"
+            android:layout_height="74dp"
+            android:background="@drawable/ic_fourth_c"
+            app:layout_constraintBottom_toBottomOf="@id/buttonNumberThree"
+            app:layout_constraintEnd_toStartOf="@id/buttonNumberThree"
+            app:layout_constraintTop_toTopOf="@id/buttonNumberThree" />
+
+        <View
+            android:id="@+id/c13"
+            android:layout_width="54dp"
+            android:layout_height="74dp"
+            android:background="@drawable/ic_path_vertical"
+            app:layout_constraintBottom_toTopOf="@id/c12"
+            app:layout_constraintEnd_toEndOf="@id/c12"
+            app:layout_constraintStart_toStartOf="@id/c12" />
+
+        <View
+            android:id="@+id/buttonNumberFour"
+            android:layout_width="54dp"
+            android:layout_height="74dp"
+            android:background="@drawable/ic_step_horizontal"
+            app:layout_constraintBottom_toTopOf="@id/c13"
+            app:layout_constraintEnd_toEndOf="@id/c13"
+            app:layout_constraintStart_toStartOf="@id/c13" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/buttonNumberFourText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/num_4"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@id/buttonNumberFour"
+            app:layout_constraintEnd_toEndOf="@id/buttonNumberFour"
+            app:layout_constraintStart_toStartOf="@id/buttonNumberFour"
+            app:layout_constraintTop_toTopOf="@id/buttonNumberFour" />
+
+        <View
+            android:id="@+id/c15"
+            android:layout_width="54dp"
+            android:layout_height="74dp"
+            android:background="@drawable/ic_second_c"
+            app:layout_constraintBottom_toTopOf="@id/buttonNumberFour"
+            app:layout_constraintEnd_toEndOf="@id/buttonNumberFour"
+            app:layout_constraintStart_toStartOf="@id/buttonNumberFour" />
+
+        <View
+            android:id="@+id/c16"
+            android:layout_width="54dp"
+            android:layout_height="74dp"
+            android:background="@drawable/ic_fourth_c"
+            app:layout_constraintBottom_toBottomOf="@id/c15"
+            app:layout_constraintEnd_toStartOf="@id/c15"
+            app:layout_constraintTop_toTopOf="@id/c15" />
+
+        <View
+            android:id="@+id/buttonNumberFive"
+            android:layout_width="54dp"
+            android:layout_height="74dp"
+            android:background="@drawable/ic_step_horizontal"
+            app:layout_constraintBottom_toTopOf="@id/c16"
+            app:layout_constraintEnd_toEndOf="@id/c16"
+            app:layout_constraintStart_toStartOf="@id/c16" />
 
 
-    <ProgressBar
-        android:id="@+id/loading"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="64dp"
-        android:layout_marginBottom="64dp"
-        android:elevation="2dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.3" />
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/buttonNumberFiveText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/num_5"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@id/buttonNumberFive"
+            app:layout_constraintEnd_toEndOf="@id/buttonNumberFive"
+            app:layout_constraintStart_toStartOf="@id/buttonNumberFive"
+            app:layout_constraintTop_toTopOf="@+id/buttonNumberFive" />
+
+        <View
+            android:id="@+id/c18"
+            android:layout_width="54dp"
+            android:layout_height="74dp"
+            android:background="@drawable/ic_first_c"
+            app:layout_constraintBottom_toTopOf="@id/buttonNumberFive"
+            app:layout_constraintEnd_toEndOf="@id/buttonNumberFive"
+            app:layout_constraintStart_toStartOf="@id/buttonNumberFive" />
+
+        <View
+            android:id="@+id/c19"
+            android:layout_width="100dp"
+            android:layout_height="74dp"
+            android:background="@drawable/ic_path_horizontal"
+            app:layout_constraintBottom_toBottomOf="@id/c18"
+            app:layout_constraintStart_toEndOf="@id/c18"
+            app:layout_constraintTop_toTopOf="@id/c18" />
+
+        <View
+            android:id="@+id/c20"
+            android:layout_width="54dp"
+            android:layout_height="74dp"
+            android:background="@drawable/ic_third_c"
+            app:layout_constraintBottom_toBottomOf="@id/c19"
+            app:layout_constraintStart_toEndOf="@id/c19"
+            app:layout_constraintTop_toTopOf="@id/c19" />
+
+        <View
+            android:id="@+id/c21"
+            android:layout_width="54dp"
+            android:layout_height="74dp"
+            android:background="@drawable/ic_path_vertical"
+            app:layout_constraintBottom_toTopOf="@id/c20"
+            app:layout_constraintEnd_toEndOf="@id/c20"
+            app:layout_constraintStart_toStartOf="@id/c20" />
+
+        <View
+            android:id="@+id/c22"
+            android:layout_width="54dp"
+            android:layout_height="74dp"
+            android:background="@drawable/ic_second_c"
+            app:layout_constraintBottom_toTopOf="@id/c21"
+            app:layout_constraintEnd_toEndOf="@id/c21"
+            app:layout_constraintStart_toStartOf="@id/c21" />
+
+        <View
+            android:id="@+id/c23"
+            android:layout_width="54dp"
+            android:layout_height="74dp"
+            android:background="@drawable/ic_fourth_c"
+            app:layout_constraintBottom_toBottomOf="@id/c22"
+            app:layout_constraintEnd_toStartOf="@id/c22"
+            app:layout_constraintTop_toTopOf="@id/c22" />
+
+        <View
+            android:id="@+id/c24"
+            android:layout_width="54dp"
+            android:layout_height="74dp"
+            android:background="@drawable/ic_path_vertical"
+            app:layout_constraintBottom_toTopOf="@id/c23"
+            app:layout_constraintEnd_toEndOf="@id/c23"
+            app:layout_constraintStart_toStartOf="@id/c23" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/treeOne"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginEnd="100dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/c1"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/tree"
+            app:lottie_speed="5" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/treeTwo"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="150dp"
+            app:layout_constraintBottom_toBottomOf="@id/buttonNumberTwo"
+            app:layout_constraintStart_toEndOf="@id/buttonNumberTwo"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/tree"
+            app:lottie_speed="5" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/treeThree"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            app:layout_constraintBottom_toBottomOf="@id/c9"
+            app:layout_constraintEnd_toStartOf="@id/c9"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/tree"
+            app:lottie_speed="5" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/treeFour"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            app:layout_constraintBottom_toBottomOf="@id/c13"
+            app:layout_constraintEnd_toStartOf="@id/c13"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/tree"
+            app:lottie_speed="5" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/treeFive"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="70dp"
+            app:layout_constraintBottom_toBottomOf="@id/buttonNumberFive"
+            app:layout_constraintStart_toEndOf="@id/buttonNumberFive"
+            app:layout_constraintTop_toTopOf="@id/buttonNumberFive"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/tree"
+            app:lottie_speed="5" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/treeSix"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="10dp"
+            app:layout_constraintBottom_toBottomOf="@id/treeFive"
+            app:layout_constraintStart_toEndOf="@id/treeFive"
+            app:layout_constraintTop_toTopOf="@id/treeFive"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/tree"
+            app:lottie_speed="5" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/treeSeven"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="25dp"
+            app:layout_constraintBottom_toBottomOf="@id/c15"
+            app:layout_constraintStart_toEndOf="@id/c15"
+            app:layout_constraintTop_toBottomOf="@id/treeFive"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/tree"
+            app:lottie_speed="5" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/treeEight"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintBottom_toBottomOf="@id/treeSeven"
+            app:layout_constraintStart_toEndOf="@id/treeSeven"
+            app:layout_constraintTop_toBottomOf="@id/treeSix"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/tree"
+            app:lottie_speed="5" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/treeNine"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginEnd="10dp"
+            app:layout_constraintBottom_toBottomOf="@id/c21"
+            app:layout_constraintEnd_toStartOf="@id/c21"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/tree"
+            app:lottie_speed="5" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/treeTen"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="80dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintBottom_toBottomOf="@id/c24"
+            app:layout_constraintStart_toEndOf="@id/c24"
+            app:layout_constraintTop_toTopOf="@id/c24"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/tree"
+            app:lottie_speed="5" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/elephantOne"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:layout_constraintBottom_toBottomOf="@id/buttonNumberOne"
+            app:layout_constraintEnd_toEndOf="@id/buttonNumberOne"
+            app:layout_constraintStart_toStartOf="@id/buttonNumberOne"
+            app:layout_constraintTop_toTopOf="@id/buttonNumberOne"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/elephant" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/elephantTwo"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/buttonNumberTwo"
+            app:layout_constraintEnd_toEndOf="@id/buttonNumberTwo"
+            app:layout_constraintStart_toStartOf="@id/buttonNumberTwo"
+            app:layout_constraintTop_toTopOf="@id/buttonNumberTwo"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/elephant" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/elephantThree"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/buttonNumberThree"
+            app:layout_constraintEnd_toEndOf="@id/buttonNumberThree"
+            app:layout_constraintStart_toStartOf="@id/buttonNumberThree"
+            app:layout_constraintTop_toTopOf="@id/buttonNumberThree"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/elephant" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/elephantFour"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/buttonNumberFour"
+            app:layout_constraintEnd_toEndOf="@id/buttonNumberFour"
+            app:layout_constraintStart_toStartOf="@id/buttonNumberFour"
+            app:layout_constraintTop_toTopOf="@id/buttonNumberFour"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/elephant" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/elephantFive"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/buttonNumberFive"
+            app:layout_constraintEnd_toEndOf="@id/buttonNumberFive"
+            app:layout_constraintStart_toStartOf="@id/buttonNumberFive"
+            app:layout_constraintTop_toTopOf="@id/buttonNumberFive"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/elephant" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</ScrollView>

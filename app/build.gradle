@@ -20,7 +20,7 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-        buildConfigField "String", "API_KEY", "\"ecc301796edc13dc81b9b5f9053c2e65\""
+        buildConfigField "String", "API_KEY", "\"api key here\""
     }
 
     buildTypes {
@@ -85,5 +85,8 @@ dependencies {
     kapt "androidx.room:room-compiler:2.2.5"
     //Kotlin Extensions and Coroutines support for Room
     implementation "androidx.room:room-ktx:2.2.5"
+
+    // lottie
+    implementation "com.airbnb.android:lottie:3.4.2"
 
 }

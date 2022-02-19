@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Lojong-Teste</string>
+    <string name="num_1">1</string>
+    <string name="num_2">2</string>
+    <string name="num_3">3</string>
+    <string name="num_4">4</string>
+    <string name="num_5">5</string>
 </resources>

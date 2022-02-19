@@ -14,7 +14,6 @@ import io.lojong.com.model.Result
 import io.lojong.com.ui.adapter.FactAdapter
 import io.lojong.com.ui.viewmodel.ListingViewModel
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.activity_main.loading
 import lojong.R
 
 
@@ -30,55 +29,64 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setTheme(R.style.Theme_Lojong)
         setContentView(R.layout.activity_main)
-
-        init()
-        subscribeUi()
+        forceScrollDown()
+       // init()
+      //  subscribeUi()
     }
 
-    private fun init() {
-        title = "Trending Movies"
-        val layoutManager = LinearLayoutManager(this)
-        rvMovies.layoutManager = layoutManager
+//    private fun init() {
+//        title = "Trending Movies"
+//        val layoutManager = LinearLayoutManager(this)
+//        rvMovies.layoutManager = layoutManager
+//
+//        val dividerItemDecoration = DividerItemDecoration(
+//                rvMovies.context,
+//                layoutManager.orientation
+//        )
+//
+//        rvMovies.addItemDecoration(dividerItemDecoration)
+//        moviesAdapter = FactAdapter(this, list)
+//        rvMovies.adapter = moviesAdapter
+//    }
+//
+//    private fun subscribeUi() {
+//        viewModel.movieList.observe(this, Observer { result ->
+//
+//            when (result.status) {
+//                Result.Status.SUCCESS -> {
+//                    result.data?.results?.let { list ->
+//                        moviesAdapter.updateData(list)
+//                    }
+//                    loading.visibility = View.GONE
+//                }
+//
+//                Result.Status.ERROR -> {
+//                    result.message?.let {
+//                        showError(it)
+//                    }
+//                    loading.visibility = View.GONE
+//                }
+//
+//                Result.Status.LOADING -> {
+//                    loading.visibility = View.VISIBLE
+//                }
+//            }
+//
+//        })
+//    }
 
-        val dividerItemDecoration = DividerItemDecoration(
-                rvMovies.context,
-                layoutManager.orientation
-        )
 
-        rvMovies.addItemDecoration(dividerItemDecoration)
-        moviesAdapter = FactAdapter(this, list)
-        rvMovies.adapter = moviesAdapter
-    }
 
-    private fun subscribeUi() {
-        viewModel.movieList.observe(this, Observer { result ->
-
-            when (result.status) {
-                Result.Status.SUCCESS -> {
-                    result.data?.results?.let { list ->
-                        moviesAdapter.updateData(list)
-                    }
-                    loading.visibility = View.GONE
-                }
-
-                Result.Status.ERROR -> {
-                    result.message?.let {
-                        showError(it)
-                    }
-                    loading.visibility = View.GONE
-                }
-
-                Result.Status.LOADING -> {
-                    loading.visibility = View.VISIBLE
-                }
-            }
-
-        })
+    private fun forceScrollDown() {
+        vScroll.post {
+            vScroll.fullScroll(View.FOCUS_DOWN)
+        }
     }
 
     private fun showError(msg: String) {
-        Snackbar.make(vParent, msg, Snackbar.LENGTH_INDEFINITE).setAction("DISMISS") {
+        Snackbar.make(vScroll, msg, Snackbar.LENGTH_INDEFINITE).setAction("DISMISS") {
         }.show()
     }
 }
