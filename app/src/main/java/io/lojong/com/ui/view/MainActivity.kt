@@ -5,15 +5,13 @@ import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.airbnb.lottie.LottieAnimationView
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import io.lojong.com.model.Fact
 import io.lojong.com.model.Result
-import io.lojong.com.ui.adapter.FactAdapter
-import io.lojong.com.ui.viewmodel.ListingViewModel
+import io.lojong.com.ui.viewmodel.MainViewModel
+import io.lojong.com.util.SharedPreferencesHelper
 import io.lojong.com.util.setGone
 import io.lojong.com.util.setVisible
 import kotlinx.android.synthetic.main.activity_main.*
@@ -27,18 +25,32 @@ import lojong.R
 class MainActivity : AppCompatActivity() {
 
     private var factsList = ArrayList<Fact>()
-    private val viewModel by viewModels<ListingViewModel>()
+    private val viewModel by viewModels<MainViewModel>()
+    lateinit var sharedPreferences : SharedPreferencesHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setTheme(R.style.Theme_Lojong)
         setContentView(R.layout.activity_main)
+
+        sharedPreferences = SharedPreferencesHelper(this)
         forceScrollDown()
         subscribeUi()
+        setupFirstPosition()
+    }
+
+    private fun setupFirstPosition() {
+        when (getLastPosition()) {
+            0 ->   handleElephantVisibility(elephantOne)
+            1 ->   handleElephantVisibility(elephantTwo)
+            2 ->   handleElephantVisibility(elephantThree)
+            3 ->   handleElephantVisibility(elephantFour)
+            4 ->   handleElephantVisibility(elephantFive)
+        }
     }
 
     private fun subscribeUi() {
-        viewModel.movieList.observe(this, Observer { result ->
+        viewModel.factsList.observe(this, Observer { result ->
 
             when (result.status) {
                 Result.Status.SUCCESS -> {
@@ -62,26 +74,42 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
+    private fun getLastPosition(): Int {
+        return  sharedPreferences.getInt("elephant_position")
+    }
+
+    private fun setLastPosition(position: Int) {
+        sharedPreferences.saveInt("elephant_position", position)
+    }
+
     private fun handleOnClickListener() {
+        if (factsList.size < 3) {
+            showError("An error occurred")
+        } else
         buttonNumberOne.setOnClickListener {
             showDialog(factsList[0].text)
             handleElephantVisibility(elephantOne)
+            setLastPosition(0)
         }
         buttonNumberTwo.setOnClickListener {
             showDialog(factsList[1].text)
             handleElephantVisibility(elephantTwo)
+            setLastPosition(1)
         }
         buttonNumberThree.setOnClickListener {
             showDialog(factsList[2].text)
             handleElephantVisibility(elephantThree)
+            setLastPosition(2)
         }
         buttonNumberFour.setOnClickListener {
             showDialog(factsList[3].text)
             handleElephantVisibility(elephantFour)
+            setLastPosition(3)
         }
         buttonNumberFive.setOnClickListener {
             showDialog(factsList[4].text)
             handleElephantVisibility(elephantFive)
+            setLastPosition(4)
         }
 
     }

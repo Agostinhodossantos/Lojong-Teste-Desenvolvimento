@@ -9,13 +9,13 @@ class SharedPreferencesHelper(private val context: Context) {
     private val sharedPreferences =
         context.getSharedPreferences(SHARED_PREFERENCES, Context.MODE_PRIVATE)
 
-    fun saveString(key: String, value: String?) = sharedPreferences.edit().run {
-        putString(key,value )
+    fun saveInt(key: String, value: Int?) = sharedPreferences.edit().run {
+        value?.let { putInt(key, it) }
         apply()
     }
 
-    fun getString(key: String) = sharedPreferences.run {
-        getString(key,"")
+    fun getInt(key: String) = sharedPreferences.run {
+        getInt(key,0)
     }
 }
 
