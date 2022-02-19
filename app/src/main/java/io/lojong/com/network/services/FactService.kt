@@ -9,6 +9,6 @@ import retrofit2.http.GET
  */
 interface FactService {
     @GET("/facts/")
-    suspend fun getPopularMovies() : Response<FactResponse>
+    suspend fun getAllFacts() : Response<FactResponse>
 
 }

@@ -1,7 +1,7 @@
 package io.lojong.com.data
 
 import io.lojong.com.data.local.FactDao
-import io.lojong.com.data.remote.MovieRemoteDataSource
+import io.lojong.com.data.remote.FactRemoteDataSource
 import io.lojong.com.model.Result
 import io.lojong.com.model.FactResponse
 import kotlinx.coroutines.Dispatchers
@@ -14,36 +14,31 @@ import javax.inject.Inject
  * Repository which fetches data from Remote or Local data sources
  */
 class FactRepository @Inject constructor(
-        private val movieRemoteDataSource: MovieRemoteDataSource,
-        private val movieDao: FactDao
+    private val factsRemoteDataSource: FactRemoteDataSource,
+    private val factDao: FactDao
 ) {
 
-    suspend fun fetchTrendingMovies(): Flow<Result<Any>?> {
+    suspend fun fetchFacts(): Flow<Result<Any>?> {
         return flow {
-            emit(fetchTrendingMoviesCached())
+            emit(fetchFactsCached())
             emit(Result.loading())
-            val result = movieRemoteDataSource.fetchTrendingMovies()
+            val result = factsRemoteDataSource.fetchAllFacts()
 
             //Cache to database if response is successful
             if (result.status == Result.Status.SUCCESS) {
                 result.data?.results?.let { it ->
-                    movieDao.deleteAll(it)
-                    movieDao.insertAll(it)
+                    factDao.deleteAll(it)
+                    factDao.insertAll(it)
                 }
             }
             emit(result)
         }.flowOn(Dispatchers.IO)
     }
 
-    private fun fetchTrendingMoviesCached(): Result<FactResponse>? =
-            movieDao.getAll()?.let {
+    private fun fetchFactsCached(): Result<FactResponse>? =
+            factDao.getAll()?.let {
                 Result.success(FactResponse(it))
             }
 
-//    suspend fun fetchMovie(id: Int): Flow<Result<MovieDesc>> {
-//        return flow {
-//            emit(Result.loading())
-//            emit(movieRemoteDataSource.fetchMovie(id))
-//        }.flowOn(Dispatchers.IO)
-//    }
+
 }

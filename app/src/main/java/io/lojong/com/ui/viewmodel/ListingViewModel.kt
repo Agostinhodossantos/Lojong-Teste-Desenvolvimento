@@ -25,7 +25,7 @@ class ListingViewModel @ViewModelInject constructor(private val movieRepository:
 
     private fun fetchMovies() {
         viewModelScope.launch {
-            movieRepository.fetchTrendingMovies().collect {
+            movieRepository.fetchFacts().collect {
                 _movieList.value = it as Result<FactResponse>?
             }
         }
