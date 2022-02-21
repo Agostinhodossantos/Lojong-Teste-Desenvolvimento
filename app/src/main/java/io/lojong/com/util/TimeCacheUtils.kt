@@ -16,13 +16,13 @@ class TimeCacheUtils {
         return dateFormat.format(Calendar.getInstance().time)
     }
 
-    private fun setLastRequestTime() {
-        var sp = SharedPreferencesHelper(AppClass().context())
+    fun setLastRequestTime() {
+        var sp = SharedPreferencesHelper(AppClass().applicationContext)
         sp.saveString(CACHE_DATE, getCurrentDate())
     }
 
     private fun getLastRequestTime(): String {
-        var sp = SharedPreferencesHelper(AppClass().context())
+        var sp = SharedPreferencesHelper(AppClass().applicationContext)
         return sp.getString(CACHE_DATE).toString()
     }
 }

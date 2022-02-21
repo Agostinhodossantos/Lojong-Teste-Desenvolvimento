@@ -20,15 +20,14 @@ import kotlinx.android.synthetic.main.activity_main.*
 import lojong.R
 
 
-/**
- * Shows list of movie/show
- */
+
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private var factsList = ArrayList<Fact>()
     private val viewModel by viewModels<MainViewModel>()
     lateinit var sharedPreferences : SharedPreferencesHelper
+    val ELEPHANT_POSITION = "elephant_position"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -84,11 +83,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getLastPosition(): Int {
-        return  sharedPreferences.getInt("elephant_position")
+        return  sharedPreferences.getInt(ELEPHANT_POSITION)
     }
 
     private fun setLastPosition(position: Int) {
-        sharedPreferences.saveInt("elephant_position", position)
+        sharedPreferences.saveInt(ELEPHANT_POSITION, position)
     }
 
     private fun handleOnClickListener() {

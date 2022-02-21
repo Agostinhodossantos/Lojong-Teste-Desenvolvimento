@@ -5,8 +5,6 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
 import io.lojong.com.Config
-import io.lojong.com.network.AuthInterceptor
-import lojong.BuildConfig
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -30,7 +28,7 @@ object NetworkModule {
     ): OkHttpClient {
         return OkHttpClient.Builder()
                 .addInterceptor(loggingInterceptor)
-                .addInterceptor(AuthInterceptor(BuildConfig.API_KEY))
+                //.addInterceptor(AuthInterceptor(BuildConfig.API_KEY))
                 .build()
     }
 

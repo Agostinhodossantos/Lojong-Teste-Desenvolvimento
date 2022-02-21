@@ -7,6 +7,4 @@ import dagger.hilt.android.HiltAndroidApp
  * Application class
  */
 @HiltAndroidApp
-class AppClass : Application(){
-    fun context() = this
-}
+class AppClass : Application()

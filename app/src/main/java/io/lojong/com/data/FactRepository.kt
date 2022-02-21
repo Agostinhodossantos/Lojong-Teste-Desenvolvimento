@@ -24,11 +24,12 @@ class FactRepository @Inject constructor(
     suspend fun fetchFacts(): Flow<Result<Any>?> {
         return flow {
             emit(Result.loading())
-           // var cacheTime = TimeCacheUtils();
+            //TODO:"remove comment and fix context issue"
+            //var cacheTime = TimeCacheUtils();
 
-           // if (cacheTime.isValidCache() && factDao.getAll()!!.size > 0) {
+            //if (cacheTime.isValidCache() && factDao.getAll()!!.size > 0) {
                 emit(fetchFactsCached())
-          //  } else {
+            //} else {
                 val result = factsRemoteDataSource.fetchAllFacts()
                 //Cache to database if response is successful
                 if (result.status == Result.Status.SUCCESS) {
@@ -36,10 +37,12 @@ class FactRepository @Inject constructor(
                     result.data?.results?.let { it ->
                         factDao.deleteAll(it)
                         factDao.insertAll(it)
+                        //cacheTime.setLastRequestTime()
                     }
                 }
+
                 emit(result)
-          //  }
+           //}
 
         }.flowOn(Dispatchers.IO)
     }
