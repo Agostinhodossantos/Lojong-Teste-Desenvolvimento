@@ -89,4 +89,7 @@ dependencies {
     // lottie
     implementation "com.airbnb.android:lottie:3.4.2"
 
+    //Tooltip dialog
+    implementation 'com.kcrimi.tooltipdialog:tooltipdialog:1.1.0'
+
 }

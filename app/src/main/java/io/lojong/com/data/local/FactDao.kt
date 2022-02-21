@@ -6,7 +6,7 @@ import io.lojong.com.model.Fact
 @Dao
 interface FactDao {
 
-    @Query("SELECT * FROM fact order by id DESC")
+    @Query("SELECT * FROM fact")
     fun getAll(): List<Fact>?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

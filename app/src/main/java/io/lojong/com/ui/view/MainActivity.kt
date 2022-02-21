@@ -2,11 +2,13 @@ package io.lojong.com.ui.view
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.airbnb.lottie.LottieAnimationView
 import com.google.android.material.snackbar.Snackbar
+import com.kcrimi.tooltipdialog.ToolTipDialog
 import dagger.hilt.android.AndroidEntryPoint
 import io.lojong.com.model.Fact
 import io.lojong.com.model.Result
@@ -62,13 +64,20 @@ class MainActivity : AppCompatActivity() {
 
                 Result.Status.ERROR -> {
                     result.message?.let {
-                        showError(it)
+                        showMessage(it)
+                    }
+                }
+
+                Result.Status.REQUESTING -> {
+                    result.message?.let {
+                        showMessage(it)
                     }
                 }
 
                 Result.Status.LOADING -> {
 
                 }
+
             }
 
         })
@@ -83,39 +92,58 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun handleOnClickListener() {
-        if (factsList.size < 3) {
-            showError("An error occurred")
-        } else
+
         buttonNumberOne.setOnClickListener {
-            showDialog(factsList[0].text)
+            showCustomDialog(getFactText(0), it)
             handleElephantVisibility(elephantOne)
             setLastPosition(0)
         }
         buttonNumberTwo.setOnClickListener {
-            showDialog(factsList[1].text)
+            showCustomDialog(getFactText(1), it)
             handleElephantVisibility(elephantTwo)
             setLastPosition(1)
         }
         buttonNumberThree.setOnClickListener {
-            showDialog(factsList[2].text)
+            showCustomDialog(getFactText(2), it)
             handleElephantVisibility(elephantThree)
             setLastPosition(2)
         }
         buttonNumberFour.setOnClickListener {
-            showDialog(factsList[3].text)
+            showCustomDialog(getFactText(3), it)
             handleElephantVisibility(elephantFour)
             setLastPosition(3)
         }
         buttonNumberFive.setOnClickListener {
-            showDialog(factsList[4].text)
+            showCustomDialog(getFactText(4), it)
             handleElephantVisibility(elephantFive)
             setLastPosition(4)
+
+        }
+
+    }
+
+    private fun getFactText(i: Int): String? {
+        return if (factsList.size > 3) factsList[i].text else ""
+    }
+
+    private fun showCustomDialog(factText: String?, view: View?) {
+        view?.let {
+            val location = intArrayOf(0,0)
+            it.getLocationInWindow(location);
+            // Pass in a theme in order to style the dialog
+            val dialog = ToolTipDialog(this, this)
+                .title("Fact")
+                .pointTo(location[0] + it.width / 2, location[1] - it.height)
+                .content(factText!!)
+                //.subtitle()
+
+            dialog.show()
         }
 
     }
 
     private fun showDialog(text: String?) {
-
+        Toast.makeText(this, text, Toast.LENGTH_LONG).show()
     }
 
     private fun handleElephantVisibility(elephant: LottieAnimationView) {
@@ -165,8 +193,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun showError(msg: String) {
-        Snackbar.make(vScroll, msg, Snackbar.LENGTH_INDEFINITE).setAction("DISMISS") {
-        }.show()
+    private fun showMessage(msg: String) {
+        Toast.makeText(this, msg, Toast.LENGTH_LONG).show()
     }
 }

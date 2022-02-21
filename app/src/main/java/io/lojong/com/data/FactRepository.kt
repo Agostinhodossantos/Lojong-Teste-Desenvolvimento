@@ -26,6 +26,7 @@ class FactRepository @Inject constructor(
 
             //Cache to database if response is successful
             if (result.status == Result.Status.SUCCESS) {
+                emit(Result.requesting("API OK"))
                 result.data?.results?.let { it ->
                     factDao.deleteAll(it)
                     factDao.insertAll(it)

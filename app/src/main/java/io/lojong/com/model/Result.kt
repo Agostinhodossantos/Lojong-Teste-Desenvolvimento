@@ -8,7 +8,8 @@ data class Result<out T>(val status: Status, val data: T?, val error: Error?, va
     enum class Status {
         SUCCESS,
         ERROR,
-        LOADING
+        LOADING,
+        REQUESTING
     }
 
     companion object {
@@ -22,6 +23,10 @@ data class Result<out T>(val status: Status, val data: T?, val error: Error?, va
 
         fun <T> loading(data: T? = null): Result<T> {
             return Result(Status.LOADING, data, null, null)
+        }
+
+        fun <T> requesting(message: String): Result<T> {
+            return Result(Status.REQUESTING, null, null, message)
         }
     }
 

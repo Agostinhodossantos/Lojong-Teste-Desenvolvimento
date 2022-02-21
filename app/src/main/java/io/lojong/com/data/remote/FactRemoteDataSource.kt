@@ -17,7 +17,7 @@ class FactRemoteDataSource @Inject constructor(private val retrofit: Retrofit) {
         val factService = retrofit.create(FactService::class.java);
         return getResponse(
                 request = { factService.getAllFacts() },
-                defaultErrorMessage = "Error fetching Movie list")
+                defaultErrorMessage = "Error fetching list")
 
     }
 
