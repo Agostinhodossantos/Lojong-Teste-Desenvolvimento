@@ -7,7 +7,7 @@ import java.util.*
 class TimeCacheUtils {
     private val CACHE_DATE = "cache_date"
 
-    private fun isValidCache(): Boolean {
+    fun isValidCache(): Boolean {
         return getCurrentDate() == getLastRequestTime()
     }
 
@@ -17,12 +17,12 @@ class TimeCacheUtils {
     }
 
     private fun setLastRequestTime() {
-        var sp = SharedPreferencesHelper(AppClass().applicationContext)
+        var sp = SharedPreferencesHelper(AppClass().context())
         sp.saveString(CACHE_DATE, getCurrentDate())
     }
 
     private fun getLastRequestTime(): String {
-        var sp = SharedPreferencesHelper(AppClass().applicationContext)
+        var sp = SharedPreferencesHelper(AppClass().context())
         return sp.getString(CACHE_DATE).toString()
     }
 }

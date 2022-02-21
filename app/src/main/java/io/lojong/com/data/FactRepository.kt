@@ -6,6 +6,7 @@ import io.lojong.com.data.remote.FactRemoteDataSource
 import io.lojong.com.model.Result
 import io.lojong.com.model.FactResponse
 import io.lojong.com.util.SharedPreferencesHelper
+import io.lojong.com.util.TimeCacheUtils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -22,20 +23,24 @@ class FactRepository @Inject constructor(
 
     suspend fun fetchFacts(): Flow<Result<Any>?> {
         return flow {
-            emit(fetchFactsCached())
             emit(Result.loading())
-            val result = factsRemoteDataSource.fetchAllFacts()
+           // var cacheTime = TimeCacheUtils();
 
-
-            //Cache to database if response is successful
-            if (result.status == Result.Status.SUCCESS) {
-                emit(Result.requesting("API OK"))
-                result.data?.results?.let { it ->
-                    factDao.deleteAll(it)
-                    factDao.insertAll(it)
+           // if (cacheTime.isValidCache() && factDao.getAll()!!.size > 0) {
+                emit(fetchFactsCached())
+          //  } else {
+                val result = factsRemoteDataSource.fetchAllFacts()
+                //Cache to database if response is successful
+                if (result.status == Result.Status.SUCCESS) {
+                    emit(Result.requesting("API OK"))
+                    result.data?.results?.let { it ->
+                        factDao.deleteAll(it)
+                        factDao.insertAll(it)
+                    }
                 }
-            }
-            emit(result)
+                emit(result)
+          //  }
+
         }.flowOn(Dispatchers.IO)
     }
 
