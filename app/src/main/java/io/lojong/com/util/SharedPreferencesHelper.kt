@@ -17,6 +17,16 @@ class SharedPreferencesHelper(private val context: Context) {
     fun getInt(key: String) = sharedPreferences.run {
         getInt(key,0)
     }
+
+    fun saveString(key: String, value: String?) = sharedPreferences.edit().run {
+        putString(key,value )
+        apply()
+    }
+
+    fun getString(key: String) = sharedPreferences.run {
+        getString(key,"")
+    }
+
 }
 
 

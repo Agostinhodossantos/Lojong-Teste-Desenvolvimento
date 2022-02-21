@@ -1,9 +1,11 @@
 package io.lojong.com.data
 
+import io.lojong.com.AppClass
 import io.lojong.com.data.local.FactDao
 import io.lojong.com.data.remote.FactRemoteDataSource
 import io.lojong.com.model.Result
 import io.lojong.com.model.FactResponse
+import io.lojong.com.util.SharedPreferencesHelper
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -23,6 +25,7 @@ class FactRepository @Inject constructor(
             emit(fetchFactsCached())
             emit(Result.loading())
             val result = factsRemoteDataSource.fetchAllFacts()
+
 
             //Cache to database if response is successful
             if (result.status == Result.Status.SUCCESS) {
